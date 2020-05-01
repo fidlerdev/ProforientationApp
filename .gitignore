@@ -16,3 +16,7 @@ package-lock.json
 
 .vscode
 .idea
+
+# README.md от VK
+# Игнорируем, но не удаляем, т.к. может пригодиться
+README.md
