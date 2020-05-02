@@ -1,0 +1,1 @@
+{"version":3,"sources":["Home.css","Persik.css"],"names":[],"mappings":"AAAA,WACI,SACJ,CCFA,QACE,aAAc,CACd,SAAU,CACV,eAAgB,CAChB,gBACF","file":"main.b85a24d8.chunk.css","sourcesContent":[".xl-button {\n    color: red;\n}",".Persik {\n  display: block;\n  width: 30%;\n  max-width: 240px;\n  margin: 20px auto;\n}\n"]}
