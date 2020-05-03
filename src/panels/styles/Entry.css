@@ -1,0 +1,19 @@
+.Content {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.AppName {
+    font-size: 30px;
+    color: #2C2D2E;
+}
+
+.link {
+    margin-top: 20px;
+    justify-content: center;
+    color: #969FAA;
+}
+
+

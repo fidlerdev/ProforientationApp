@@ -1,9 +1,9 @@
 {
-  "name": "mini-app",
+  "name": "school-prjoect",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://fidlerdev.github.io/my-school-project",
+  "homepage": "https://fidlerdev.github.io/my-school-project/",
   "scripts": {
     "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
     "build": "react-scripts build",
@@ -11,11 +11,12 @@
     "deploy": "gh-pages -d build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Veniamin S.",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.2.1",
     "gh-pages": "^2.2.0",
+    "google-charts": "^2.0.0",
     "react-hot-loader": "^4.12.21",
     "react-scripts": "^3.4.1"
   },
