@@ -4,7 +4,6 @@ import Icon28ChevronRightOutline from '@vkontakte/icons/dist/28/chevron_right_ou
 
 const TestCard = props => {
 	const [passed, setPassed] = useState(props.passed || false);
-	const test_id = props.test_id;
 
 	let className = 'TestCard';
 	if (passed) {
@@ -12,7 +11,7 @@ const TestCard = props => {
 	}
 
 	return (
-		<Card size='m' className={className} onClick={props.handler}>
+		<Card size='m' className={className} onClick={props.handler} mode='shadow' onClick={props.go} data-to={`test-${props.test_id}`}>
 			<img src={props.src} style={{objectFit: '', borderRadius: '4px 4px 0 0'}}/>
       <Div style={{
                   padding: '0 10px 0 10px',
