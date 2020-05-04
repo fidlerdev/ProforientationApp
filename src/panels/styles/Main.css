@@ -1,0 +1,54 @@
+.TestCard {
+    width: 224px;
+    height: 164px;
+    padding: 0;
+    display: -webkit-box;
+    display: flex;
+    margin: auto;
+    position: relative;
+    background-clip: padding-box;
+    border: solid 5px transparent;
+    border-radius: 1em;
+}
+
+.TestCard:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -5px;
+    border-radius: inherit;
+    background: -webkit-gradient(linear, left top, right top, from(rgb(255, 107, 107)), to(rgb(255, 186, 58)));
+    background: linear-gradient(to right, rgb(255, 107, 107), rgb(255, 186, 58));
+}
+
+.TestCard-passed {
+    width: 224px;
+    height: 164px;
+    padding: 0;
+    display: -webkit-box;
+    display: flex;
+    margin: auto;
+    position: relative;
+    background-clip: padding-box;
+    border: solid 5px transparent;
+    border-radius: 1em;
+}
+
+.TestCard-passed:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -5px;
+    border-radius: inherit;
+    background: -webkit-gradient(linear, left top, right top, from(green), to(greenyellow));
+    background: linear-gradient(to right, green, greenyellow);
+}
+

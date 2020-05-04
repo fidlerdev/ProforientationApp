@@ -1,19 +1,17 @@
-.Content {
-    display: flex;
-    justify-content: center;
+#entry {
     margin: auto;
-    margin-top: 10px;
+    text-align: center;
 }
 
-.AppName {
-    font-size: 30px;
-    color: #2C2D2E;
+.StartButton {
+    width: 90%;
+    margin: 0 auto;
 }
 
-.link {
-    margin-top: 20px;
-    justify-content: center;
-    color: #969FAA;
+#authorship-link {
+    font-size: 12px;
+    color: #969FAA; 
+    margin-bottom: 10px;
 }
 
 

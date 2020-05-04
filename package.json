@@ -16,7 +16,6 @@
   "devDependencies": {
     "cross-env": "^5.2.1",
     "gh-pages": "^2.2.0",
-    "google-charts": "^2.0.0",
     "react-hot-loader": "^4.12.21",
     "react-scripts": "^3.4.1"
   },
@@ -33,7 +32,8 @@
     "eruda-dom": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-google-charts": "^3.0.15"
   },
   "browserslist": {
     "production": [
