@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/my-school-project/static/css/main.00f198ce.chunk.css",
-    "main.js": "/my-school-project/static/js/main.198565fd.chunk.js",
-    "main.js.map": "/my-school-project/static/js/main.198565fd.chunk.js.map",
+    "main.css": "/my-school-project/static/css/main.d7858b11.chunk.css",
+    "main.js": "/my-school-project/static/js/main.0df5ea37.chunk.js",
+    "main.js.map": "/my-school-project/static/js/main.0df5ea37.chunk.js.map",
     "runtime-main.js": "/my-school-project/static/js/runtime-main.ff92decd.js",
     "runtime-main.js.map": "/my-school-project/static/js/runtime-main.ff92decd.js.map",
     "static/css/2.551d3f2e.chunk.css": "/my-school-project/static/css/2.551d3f2e.chunk.css",
-    "static/js/2.99bef984.chunk.js": "/my-school-project/static/js/2.99bef984.chunk.js",
-    "static/js/2.99bef984.chunk.js.map": "/my-school-project/static/js/2.99bef984.chunk.js.map",
+    "static/js/2.b1e04f7a.chunk.js": "/my-school-project/static/js/2.b1e04f7a.chunk.js",
+    "static/js/2.b1e04f7a.chunk.js.map": "/my-school-project/static/js/2.b1e04f7a.chunk.js.map",
     "index.html": "/my-school-project/index.html",
-    "precache-manifest.48a82cfeddbc051c6ff3177ae10739c2.js": "/my-school-project/precache-manifest.48a82cfeddbc051c6ff3177ae10739c2.js",
+    "precache-manifest.80db9c583d7c9dd252a1859d3f324474.js": "/my-school-project/precache-manifest.80db9c583d7c9dd252a1859d3f324474.js",
     "service-worker.js": "/my-school-project/service-worker.js",
     "static/css/2.551d3f2e.chunk.css.map": "/my-school-project/static/css/2.551d3f2e.chunk.css.map",
-    "static/css/main.00f198ce.chunk.css.map": "/my-school-project/static/css/main.00f198ce.chunk.css.map",
-    "static/js/2.99bef984.chunk.js.LICENSE.txt": "/my-school-project/static/js/2.99bef984.chunk.js.LICENSE.txt",
+    "static/css/main.d7858b11.chunk.css.map": "/my-school-project/static/css/main.d7858b11.chunk.css.map",
+    "static/js/2.b1e04f7a.chunk.js.LICENSE.txt": "/my-school-project/static/js/2.b1e04f7a.chunk.js.LICENSE.txt",
     "static/media/Logo 256x256.png": "/my-school-project/static/media/Logo 256x256.d71c7559.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ff92decd.js",
     "static/css/2.551d3f2e.chunk.css",
-    "static/js/2.99bef984.chunk.js",
-    "static/css/main.00f198ce.chunk.css",
-    "static/js/main.198565fd.chunk.js"
+    "static/js/2.b1e04f7a.chunk.js",
+    "static/css/main.d7858b11.chunk.css",
+    "static/js/main.0df5ea37.chunk.js"
   ]
 }
