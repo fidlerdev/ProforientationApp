@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import Button from '@vkontakte/vkui/dist/components/Button/Button';
+// import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
-import { ModalRoot, ModalCard, Card, CardScroll, Header, Caption, Gallery, Title } from '@vkontakte/vkui';
+import { Card, CardScroll, Header, Caption, Gallery, Title } from '@vkontakte/vkui';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 // import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
-import Icon56DoNotDisturbOutline from '@vkontakte/icons/dist/56/do_not_disturb_outline';
+// import Icon56DoNotDisturbOutline from '@vkontakte/icons/dist/56/do_not_disturb_outline';
 import Icon28UserCircleOutline from '@vkontakte/icons/dist/28/user_circle_outline';
 
 import "./styles/Main.css";
@@ -23,29 +23,25 @@ import test_img_6 from '../img/Test images/Test-img-6.png';
 
 // Self-written modules
 import TestCard from './TestCard';
-import Tests from './Tests';
+// import Tests from './Tests';
 import MyColumnChart from './MyColumnChart';
 
-const Main = ({ id, go, fetchedUser}) => {
+const Main = ({ id, go, fetchedUser, goTest, results}) => {
 	const [activeModal, setActiveModal] = useState(null)
 
-	const auth = e => {
-		// if (fetchedUser) {
-		// На время разработки!!!
-		if (true) {
-			console.log(`FETCHED USER ${fetchedUser}`)
-			go(e)
-		} else {
-			setActiveModal('auth-failed');
-		}
-	}
+	let passed_1 = results[0] !== -1 ? true : false;
+	let passed_2 = results[1] !== -1 ? true : false;
+	let passed_3 = results[2] !== -1 ? true : false;
+	let passed_4 = results[3] !== -1 ? true : false;
+	let passed_5 = results[4] !== -1 ? true : false;
+	let passed_6 = results[5] !== -1 ? true : false;
 
 	// Main page UI
 	return (
 		<Panel id={id}>
 			<PanelHeader
 			left={<PanelHeaderButton>	
-							<Icon28UserCircleOutline onClick={auth} data-to='account'/>
+							<Icon28UserCircleOutline onClick={go} data-to='account'/>
 						</PanelHeaderButton>}
 			>
 				Профориентация
@@ -59,12 +55,12 @@ const Main = ({ id, go, fetchedUser}) => {
 					</Caption>}
 				>
 					<CardScroll>
-						<TestCard src={test_img_1} test_id={1} go={go} text={<span>Тест на профориентацию:<br />Кем работать?</span>}/>
-						<TestCard src={test_img_2} test_id={2} go={go} text={<span>Определение типа мышления</span>}/>
-						<TestCard src={test_img_3} test_id={3} go={go} text={<span>Дифференциально-диагностический<br />опросник</span>}/>
-						<TestCard src={test_img_4} test_id={4} go={go} text={<span>Методика "Профиль"</span>}/>
-						<TestCard src={test_img_5} test_id={5} go={go} text={<span>Опросник профессиональных<br />склонностей Йовайши</span>}/>
-						<TestCard src={test_img_6} test_id={6} go={go} text={<span>Экспресс-диагностика<br/>характерологических особенностей</span>}/>
+						<TestCard src={test_img_1} test_id={1} goTest={goTest} passed={passed_1} text={<span>Тест на профориентацию:<br />Кем работать?</span>}/>
+						<TestCard src={test_img_2} test_id={2} goTest={goTest} passed={passed_2} text={<span>Определение типа мышления</span>}/>
+						<TestCard src={test_img_3} test_id={3} goTest={goTest} passed={passed_3} text={<span>Дифференциально-диагностический<br />опросник</span>}/>
+						<TestCard src={test_img_4} test_id={4} goTest={goTest} passed={passed_4} text={<span>Методика "Профиль"</span>}/>
+						<TestCard src={test_img_5} test_id={5} goTest={goTest} passed={passed_5} text={<span>Опросник профессиональных<br />склонностей Йовайши</span>}/>
+						<TestCard src={test_img_6} test_id={6} goTest={goTest} passed={passed_6} text={<span>Экспресс-диагностика<br/>характерологических особенностей</span>}/>
 					</CardScroll>
 				</Group>
 			</Div>
@@ -130,20 +126,6 @@ const Main = ({ id, go, fetchedUser}) => {
 					</Card>
 				</Group>
 			</Div>
-			<ModalRoot activeModal={activeModal} onClose={() => setActiveModal(null)}>
-				<ModalCard
-					id='auth-failed'
-					onClose={() => setActiveModal(null)}
-					icon={<Icon56DoNotDisturbOutline />}
-					header='Вы не авторизованы'
-					caption='Произошла ошибка, либо вы не авторизованы в сети ВКонтакте. Попробуйте очистить кэш в меню приложения'
-					actions={[{
-							title: 'Закрыть',
-							mode: 'primary',
-							action: () => setActiveModal(null)
-						}]}
-					/>
-			</ModalRoot>
 		</Panel>
 )};
 

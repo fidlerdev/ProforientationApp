@@ -3,7 +3,7 @@ import { Card, Caption, Div } from '@vkontakte/vkui';
 import Icon28ChevronRightOutline from '@vkontakte/icons/dist/28/chevron_right_outline';
 
 const TestCard = props => {
-	const [passed, setPassed] = useState(props.passed || false);
+	const [passed, ] = useState(props.passed);
 
 	let className = 'TestCard';
 	if (passed) {
@@ -11,8 +11,8 @@ const TestCard = props => {
 	}
 
 	return (
-		<Card size='m' className={className} onClick={props.handler} mode='shadow' onClick={props.go} data-to={`test-${props.test_id}`}>
-			<img src={props.src} style={{objectFit: '', borderRadius: '4px 4px 0 0'}}/>
+		<Card size='m' className={className} onClick={props.handler} mode='shadow' onClick={props.goTest} data-test={`test-${props.test_id}`} data-to='test-view'>
+			<img src={props.src} style={{objectFit: '', borderRadius: '4px 4px 4px 4px'}}/>
       <Div style={{
                   padding: '0 10px 0 10px',
                   height: '50%',

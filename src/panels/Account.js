@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Panel, PanelHeader, PanelHeaderBack, Cell,
           Avatar, Card, FormLayoutGroup, FormLayout,
           Input, Select, Button, FixedLayout, Separator, Div } from "@vkontakte/vkui"
@@ -11,7 +11,12 @@ import './styles/Account.css';
 
 const Account = ({id, go, fetchedUser}) => {
 
-
+  useEffect(() => {
+    if (fetchedUser) {
+      document.getElementById('first_name_input').value = fetchedUser.first_name;
+      document.getElementById('last_name_input').value = fetchedUser.last_name;
+    }
+  });
 
   return (
     <Panel id={id}>
@@ -20,29 +25,17 @@ const Account = ({id, go, fetchedUser}) => {
       >
         Профиль
       </PanelHeader>
-        {/* { fetchedUser &&
-        <Card mode='outline' size='l' className='Card'>
-          <Cell
-            before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200} /> : null}
-            description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-          >
-            {`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-          </Cell>
-        </Card>} */}
-        {/* НА ВРЕМЯ РАЗРАБОТКИ */}
+        { fetchedUser &&
         <Div>
-          <Card mode='outline' size='l' className='Card Profile'>
+          <Card mode='outline' size='l' className='Card'>
             <Cell
-              className="Profile"
-              before={<Avatar src='http://placekitten.com/200/200' />}
-              multiline={true}
-              description="10 Класс"
+              before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200} /> : null}
+              description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
             >
-              <span id="profile-data">Вениамин Серапутский</span>
+              {`${fetchedUser.first_name} ${fetchedUser.last_name}`}
             </Cell>
           </Card>
-        </Div>
-        {/* НА ВРЕМЯ РАЗРАБОТКИ */}
+          </Div>}
         <Div>
           <Card mode='outline' size='m' className="Card">
             <FormLayout>

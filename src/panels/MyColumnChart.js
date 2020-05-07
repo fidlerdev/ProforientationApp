@@ -6,7 +6,7 @@ const MyColumnChart = props => (
     width={'100%'}
     height={'200px'}
     chartType="ColumnChart"
-    loader={<div>Loading Chart</div>}
+    loader={<div>Диаграмма загружается</div>}
     data={props.data}
     options={{
       chartArea: {width: '100%', height: '100%', left: 0, right: 0},
@@ -14,7 +14,7 @@ const MyColumnChart = props => (
       vAxis: { minValue: props.minYValue, maxValue: props.maxYValue, baselineColor: 'none', ticks: [] },
       backgroundColor: 'none',
       legend: 'none',
-      animation: { startup: 'true', duration: '1000', easing: 'linear'},
+      animation: { startup: 'true', duration: '500', easing: 'linear'},
       colors: [props.color],
       tooltip: {trigger: 'selection'}
     }}

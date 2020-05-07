@@ -1,0 +1,31 @@
+.TestImage {
+    margin: 10px 10px 20px 10px;
+    border: 5px solid rgba(0, 0, 0, 0.2) ;
+    border-radius: 20px;
+}
+
+
+/* .Image {  } */
+
+.QuestionCard {
+    padding: 10px 5px 10px 5px;
+    min-height: 180px;
+}
+
+.TestText {
+    height: 40%;
+    margin: 0 20px 0 20px;
+    padding: 1rem;
+    border-width: 3px;
+    border-style: solid;
+    border-image: 
+    linear-gradient(
+        to bottom, 
+        #5181B8, 
+        rgba(0, 0, 0, 0)
+    ) 1 100%;
+}
+
+/* .TestForm {
+    padding: 10px 5px 10px 5px;
+} */
