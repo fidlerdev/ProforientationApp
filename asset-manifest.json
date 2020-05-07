@@ -1,31 +1,31 @@
 {
   "files": {
     "main.css": "/my-school-project/static/css/main.7e9f080c.chunk.css",
-    "main.js": "/my-school-project/static/js/main.cc28a6ec.chunk.js",
-    "main.js.map": "/my-school-project/static/js/main.cc28a6ec.chunk.js.map",
+    "main.js": "/my-school-project/static/js/main.cb6b04f7.chunk.js",
+    "main.js.map": "/my-school-project/static/js/main.cb6b04f7.chunk.js.map",
     "runtime-main.js": "/my-school-project/static/js/runtime-main.f81f9efb.js",
     "runtime-main.js.map": "/my-school-project/static/js/runtime-main.f81f9efb.js.map",
     "static/css/2.551d3f2e.chunk.css": "/my-school-project/static/css/2.551d3f2e.chunk.css",
-    "static/js/2.aaad977c.chunk.js": "/my-school-project/static/js/2.aaad977c.chunk.js",
-    "static/js/2.aaad977c.chunk.js.map": "/my-school-project/static/js/2.aaad977c.chunk.js.map",
+    "static/js/2.ddcf0852.chunk.js": "/my-school-project/static/js/2.ddcf0852.chunk.js",
+    "static/js/2.ddcf0852.chunk.js.map": "/my-school-project/static/js/2.ddcf0852.chunk.js.map",
     "static/js/3.4320e476.chunk.js": "/my-school-project/static/js/3.4320e476.chunk.js",
     "static/js/3.4320e476.chunk.js.map": "/my-school-project/static/js/3.4320e476.chunk.js.map",
     "static/js/4.0384158c.chunk.js": "/my-school-project/static/js/4.0384158c.chunk.js",
     "static/js/4.0384158c.chunk.js.map": "/my-school-project/static/js/4.0384158c.chunk.js.map",
     "index.html": "/my-school-project/index.html",
-    "precache-manifest.836a6a06f0cfa8a34415877ae51890f9.js": "/my-school-project/precache-manifest.836a6a06f0cfa8a34415877ae51890f9.js",
+    "precache-manifest.25278f5d96f3f0fc6b03495310af0a11.js": "/my-school-project/precache-manifest.25278f5d96f3f0fc6b03495310af0a11.js",
     "service-worker.js": "/my-school-project/service-worker.js",
     "static/css/2.551d3f2e.chunk.css.map": "/my-school-project/static/css/2.551d3f2e.chunk.css.map",
     "static/css/main.7e9f080c.chunk.css.map": "/my-school-project/static/css/main.7e9f080c.chunk.css.map",
-    "static/js/2.aaad977c.chunk.js.LICENSE.txt": "/my-school-project/static/js/2.aaad977c.chunk.js.LICENSE.txt",
+    "static/js/2.ddcf0852.chunk.js.LICENSE.txt": "/my-school-project/static/js/2.ddcf0852.chunk.js.LICENSE.txt",
     "static/js/3.4320e476.chunk.js.LICENSE.txt": "/my-school-project/static/js/3.4320e476.chunk.js.LICENSE.txt",
     "static/media/Logo 256x256.png": "/my-school-project/static/media/Logo 256x256.d71c7559.png"
   },
   "entrypoints": [
     "static/js/runtime-main.f81f9efb.js",
     "static/css/2.551d3f2e.chunk.css",
-    "static/js/2.aaad977c.chunk.js",
+    "static/js/2.ddcf0852.chunk.js",
     "static/css/main.7e9f080c.chunk.css",
-    "static/js/main.cc28a6ec.chunk.js"
+    "static/js/main.cb6b04f7.chunk.js"
   ]
 }
