@@ -9,7 +9,7 @@ import './styles/Entry.css'
 import logo_256_256 from '../img/Logo 256x256.png';
 
 
-const Entry = ({id, go}) => (
+const Entry = ({id, go, onUserData}) => (
   <Panel id={id} centered>
     <Div className='Entry'>
       <PanelHeader separator={false} visor={true} />
@@ -18,7 +18,7 @@ const Entry = ({id, go}) => (
 
       <Button
       size="l"
-      onClick={go}
+      onClick={onUserData}
       data-to='main'
       stretched
       mode="primary"

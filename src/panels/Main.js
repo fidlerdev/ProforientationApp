@@ -19,7 +19,6 @@ import test_img_2 from '../img/Test images/Test-img-2.png';
 import test_img_3 from '../img/Test images/Test-img-3.png';
 import test_img_4 from '../img/Test images/Test-img-4.png';
 import test_img_5 from '../img/Test images/Test-img-5.png';
-import test_img_6 from '../img/Test images/Test-img-6.png';
 
 // Self-written modules
 import TestCard from './TestCard';
@@ -34,7 +33,6 @@ const Main = ({ id, go, fetchedUser, goTest, results}) => {
 	let passed_3 = results[2] !== -1 ? true : false;
 	let passed_4 = results[3] !== -1 ? true : false;
 	let passed_5 = results[4] !== -1 ? true : false;
-	let passed_6 = results[5] !== -1 ? true : false;
 
 	// Main page UI
 	return (
@@ -60,7 +58,6 @@ const Main = ({ id, go, fetchedUser, goTest, results}) => {
 						<TestCard src={test_img_3} test_id={3} goTest={goTest} passed={passed_3} text={<span>Дифференциально-диагностический<br />опросник</span>}/>
 						<TestCard src={test_img_4} test_id={4} goTest={goTest} passed={passed_4} text={<span>Методика "Профиль"</span>}/>
 						<TestCard src={test_img_5} test_id={5} goTest={goTest} passed={passed_5} text={<span>Опросник профессиональных<br />склонностей Йовайши</span>}/>
-						<TestCard src={test_img_6} test_id={6} goTest={goTest} passed={passed_6} text={<span>Экспресс-диагностика<br/>характерологических особенностей</span>}/>
 					</CardScroll>
 				</Group>
 			</Div>

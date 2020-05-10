@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Chart from 'react-google-charts';
 
-const MyPieChart = props => (
-  <Chart
-  style={{ borderRadius: 10 }}
-  width={'100%'}
-  height={'200px'}
-  chartType="PieChart"
-  loader={<div>Диаграмма загружается</div>}
-  data={[
-    ['Тип мышления', 'Количество баллов'],
-    ['П-Д', props.value_1],
-    ['А-С', props.value_2],
-    ['С-Л', props.value_3],
-    ['Н-О', props.value_4],
-    ['К', props.value_5],
-  ]}
-  options={{
-    backgroundColor: 'white'
-  }}
-  rootProps={{ 'data-testid': '1' }}
-  />
-);
-      
+const MyPieChart = props => {
+
+  var rows = [[props.type_head, props.value_head], ];
+  let temp = props.types.map((e, i) => [e, props.values[i]]);
+  for (let el of temp) {
+    rows.push(el);
+  }
+  
+
+  return (
+    <Chart
+    style={{ borderRadius: 10 }}
+    width={'100%'}
+    height={'250px'}
+    chartType="PieChart"
+    loader={<div>Диаграмма загружается</div>}
+    data={rows}
+    options={{
+      backgroundColor: 'white'
+    }}
+    rootProps={{ 'data-testid': '1' }}
+    />
+  );
+};    
 
 export default MyPieChart;

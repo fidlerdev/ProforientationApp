@@ -9,13 +9,16 @@ import Icon24Poll from '@vkontakte/icons/dist/24/poll';
 import './styles/Account.css';
 
 
-const Account = ({id, go, fetchedUser}) => {
+const Account = ({id, go, fetchedUser, firstName, lastName, classForm, savePersonalData}) => {
+
+  const first_name_input = document.getElementById('first_name_input');
+  const last_name_input = document.getElementById('last_name_input');
+  const class_form_input = document.getElementById('class_form_input');
 
   useEffect(() => {
-    if (fetchedUser) {
-      document.getElementById('first_name_input').value = fetchedUser.first_name;
-      document.getElementById('last_name_input').value = fetchedUser.last_name;
-    }
+    first_name_input.value = firstName;
+    last_name_input.value = lastName;
+    class_form_input.value = classForm;
   });
 
   return (
@@ -30,9 +33,8 @@ const Account = ({id, go, fetchedUser}) => {
           <Card mode='outline' size='l' className='Card'>
             <Cell
               before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200} /> : null}
-              description={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
             >
-              {`${fetchedUser.first_name} ${fetchedUser.last_name}`}
+              {`${firstName} ${lastName}`}
             </Cell>
           </Card>
           </Div>}
@@ -46,7 +48,11 @@ const Account = ({id, go, fetchedUser}) => {
                 <Input type='text' placeholder='Введите фамилию' id='last_name_input' />
               </FormLayoutGroup>
               <FormLayoutGroup top='Класс'>
-                <Select placeholder='Выберите класс'>
+                <Select placeholder='Выберите класс' id='class_form_input'>
+                  <option value='FORM_1'>1 класс</option>
+                  <option value='FORM_2'>2 класс</option>
+                  <option value='FORM_3'>3 класс</option>
+                  <option value='FORM_4'>4 класс</option>
                   <option value='FORM_5'>5 класс</option>
                   <option value='FORM_6'>6 класс</option>
                   <option value='FORM_7'>7 класс</option>
@@ -60,7 +66,12 @@ const Account = ({id, go, fetchedUser}) => {
                 <Button
                 size='xl'
                 mode='primary'
-                // onClick={}
+                onClick={e => savePersonalData(
+                  e,
+                  first_name_input.value,
+                  last_name_input.value,
+                  class_form_input.value
+                  )}
                 className='ButtonSave'
                 >
                   Сохранить изменения 
