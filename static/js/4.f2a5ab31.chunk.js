@@ -1,0 +1,2 @@
+(this["webpackJsonpschool-prjoect"]=this["webpackJsonpschool-prjoect"]||[]).push([[4],{183:function(o,s,t){"use strict";t.r(s);var c=t(180),p=t(181),a=t(182);c.init(),c.add(p),c.add(a),s.default=c}}]);
+//# sourceMappingURL=4.f2a5ab31.chunk.js.map
