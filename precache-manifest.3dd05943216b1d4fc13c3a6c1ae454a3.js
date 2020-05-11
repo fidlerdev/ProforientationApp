@@ -1,0 +1,46 @@
+self.__precacheManifest = (self.__precacheManifest || []).concat([
+  {
+    "revision": "1fd0b83ca051f024916960e5f70444af",
+    "url": "/my-school-project/index.html"
+  },
+  {
+    "revision": "5cd2b39f068d4389f3d4",
+    "url": "/my-school-project/static/css/2.551d3f2e.chunk.css"
+  },
+  {
+    "revision": "07a9fc4a911218e18e47",
+    "url": "/my-school-project/static/css/main.193944a5.chunk.css"
+  },
+  {
+    "revision": "5cd2b39f068d4389f3d4",
+    "url": "/my-school-project/static/js/2.e7790c2d.chunk.js"
+  },
+  {
+    "revision": "ab6bd92c46b489bf0abe330868a5708e",
+    "url": "/my-school-project/static/js/2.e7790c2d.chunk.js.LICENSE.txt"
+  },
+  {
+    "revision": "8c51b4504aa5ef30a93f",
+    "url": "/my-school-project/static/js/3.b13508c1.chunk.js"
+  },
+  {
+    "revision": "a119396f857426d1eef677dfa311ccb0",
+    "url": "/my-school-project/static/js/3.b13508c1.chunk.js.LICENSE.txt"
+  },
+  {
+    "revision": "c76a1c1da21e9a2b46d8",
+    "url": "/my-school-project/static/js/4.f2a5ab31.chunk.js"
+  },
+  {
+    "revision": "07a9fc4a911218e18e47",
+    "url": "/my-school-project/static/js/main.e9af27e4.chunk.js"
+  },
+  {
+    "revision": "75236629372cc9ccc374",
+    "url": "/my-school-project/static/js/runtime-main.60187f0b.js"
+  },
+  {
+    "revision": "d71c7559af8c27dabb8bf9678afd05be",
+    "url": "/my-school-project/static/media/Logo 256x256.d71c7559.png"
+  }
+]);
