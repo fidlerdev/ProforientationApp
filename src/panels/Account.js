@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Panel, PanelHeader, PanelHeaderBack, Cell,
           Avatar, Card, FormLayoutGroup, FormLayout,
           Input, Select, Button, FixedLayout, Separator, Div } from "@vkontakte/vkui"
@@ -9,16 +9,23 @@ import Icon24Poll from '@vkontakte/icons/dist/24/poll';
 import './styles/Account.css';
 
 
-const Account = ({id, go, fetchedUser, firstName, lastName, classForm, savePersonalData}) => {
+const Account = ({id, go, goStats, fetchedUser, firstName, lastName, savePersonalData}) => {
 
-  const first_name_input = document.getElementById('first_name_input');
-  const last_name_input = document.getElementById('last_name_input');
-  const class_form_input = document.getElementById('class_form_input');
+  var first_name_input;
+  var last_name_input;
+
+  const [name, setName] = useState(firstName);
+  const [surname, setSurname] = useState(lastName);
 
   useEffect(() => {
-    first_name_input.value = firstName;
-    last_name_input.value = lastName;
-    class_form_input.value = classForm;
+    
+    first_name_input = document.getElementById('first_name_input');
+    last_name_input = document.getElementById('last_name_input');
+
+    first_name_input.value = name;
+    console.log(name);
+    last_name_input.value = surname;
+    console.log(surname);
   });
 
   return (
@@ -34,10 +41,10 @@ const Account = ({id, go, fetchedUser, firstName, lastName, classForm, savePerso
             <Cell
               before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200} /> : null}
             >
-              {`${firstName} ${lastName}`}
+              {`${name} ${surname}`}
             </Cell>
           </Card>
-          </Div>}
+        </Div>}
         <Div>
           <Card mode='outline' size='m' className="Card">
             <FormLayout>
@@ -47,31 +54,19 @@ const Account = ({id, go, fetchedUser, firstName, lastName, classForm, savePerso
               <FormLayoutGroup top='Фамилия'>
                 <Input type='text' placeholder='Введите фамилию' id='last_name_input' />
               </FormLayoutGroup>
-              <FormLayoutGroup top='Класс'>
-                <Select placeholder='Выберите класс' id='class_form_input'>
-                  <option value='FORM_1'>1 класс</option>
-                  <option value='FORM_2'>2 класс</option>
-                  <option value='FORM_3'>3 класс</option>
-                  <option value='FORM_4'>4 класс</option>
-                  <option value='FORM_5'>5 класс</option>
-                  <option value='FORM_6'>6 класс</option>
-                  <option value='FORM_7'>7 класс</option>
-                  <option value='FORM_8'>8 класс</option>
-                  <option value='FORM_9'>9 класс</option>
-                  <option value='FORM_10'>10 класс</option>
-                  <option value='FORM_11'>11 класс</option>
-                </Select>
-              </FormLayoutGroup>
               <FormLayoutGroup>
                 <Button
                 size='xl'
                 mode='primary'
-                onClick={e => savePersonalData(
-                  e,
-                  first_name_input.value,
-                  last_name_input.value,
-                  class_form_input.value
-                  )}
+                onClick={e => {
+                  setName(first_name_input.value);
+                  setSurname(last_name_input.value);
+                  savePersonalData(
+                    e,
+                    first_name_input.value,
+                    last_name_input.value,
+                  );
+                  }}
                 className='ButtonSave'
                 >
                   Сохранить изменения 
@@ -89,6 +84,8 @@ const Account = ({id, go, fetchedUser, firstName, lastName, classForm, savePerso
                 after={<Icon24Poll />}
                 size='xl'
                 mode='secondary'
+                onClick={goStats}
+                data-to='stats'
               >
                 Статистика
               </Button>
@@ -97,34 +94,5 @@ const Account = ({id, go, fetchedUser, firstName, lastName, classForm, savePerso
     </Panel>
   );
 }
-
-// const BottomTab = ({activeTab, setActiveTab, go}) => {
-//   const changePanel = e => {
-//     setActiveTab(activeTab === INFO_TAB ? STAT_TAB : INFO_TAB);
-//     go(e.currentTarget.dataset.to);
-//   }
-  
-//   return(
-//     <FixedLayout vertical="bottom">
-//           <Separator wide />
-//           <Tabs>
-//             <TabsItem
-//               selected={activeTab === INFO_TAB}
-//               onClick={changePanel}
-//               data-to='account'
-//             >
-//               Информация
-//             </TabsItem>
-//             <TabsItem
-//               selected={activeTab === STAT_TAB}
-//               onClick={changePanel}
-//               data-to="stats"
-//             >
-//               Статистика
-//             </TabsItem>
-//           </Tabs>
-//         </FixedLayout>
-// )};
-
 
 export default Account;

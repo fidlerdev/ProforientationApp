@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
 // import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
-import { Card, CardScroll, Header, Caption, Gallery, Title } from '@vkontakte/vkui';
+import { Card, CardScroll, Header, Caption, Gallery, Title, Text, Link, Separator, Button } from '@vkontakte/vkui';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 // import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 // import Icon56DoNotDisturbOutline from '@vkontakte/icons/dist/56/do_not_disturb_outline';
@@ -25,17 +25,8 @@ import TestCard from './TestCard';
 // import Tests from './Tests';
 import MyColumnChart from './MyColumnChart';
 
-const Main = ({ id, go, fetchedUser, goTest, results}) => {
-	const [activeModal, setActiveModal] = useState(null)
-
-	let passed_1 = results[0] !== -1 ? true : false;
-	let passed_2 = results[1] !== -1 ? true : false;
-	let passed_3 = results[2] !== -1 ? true : false;
-	let passed_4 = results[3] !== -1 ? true : false;
-	let passed_5 = results[4] !== -1 ? true : false;
-
+const Main = ({ id, go, goTest, goReview}) => (
 	// Main page UI
-	return (
 		<Panel id={id}>
 			<PanelHeader
 			left={<PanelHeaderButton>	
@@ -53,11 +44,11 @@ const Main = ({ id, go, fetchedUser, goTest, results}) => {
 					</Caption>}
 				>
 					<CardScroll>
-						<TestCard src={test_img_1} test_id={1} goTest={goTest} passed={passed_1} text={<span>Тест на профориентацию:<br />Кем работать?</span>}/>
-						<TestCard src={test_img_2} test_id={2} goTest={goTest} passed={passed_2} text={<span>Определение типа мышления</span>}/>
-						<TestCard src={test_img_3} test_id={3} goTest={goTest} passed={passed_3} text={<span>Дифференциально-диагностический<br />опросник</span>}/>
-						<TestCard src={test_img_4} test_id={4} goTest={goTest} passed={passed_4} text={<span>Методика "Профиль"</span>}/>
-						<TestCard src={test_img_5} test_id={5} goTest={goTest} passed={passed_5} text={<span>Опросник профессиональных<br />склонностей Йовайши</span>}/>
+						<TestCard src={test_img_1} id='test_1' test_id={1} goTest={goTest} text={<span>Тест на профориентацию:<br />Кем работать?</span>}/>
+						<TestCard src={test_img_2} id='test_2' test_id={2} goTest={goTest} text={<span>Определение типа мышления</span>}/>
+						<TestCard src={test_img_3} id='test_3' test_id={3} goTest={goTest} text={<span>Дифференциально-диагностический<br />опросник</span>}/>
+						<TestCard src={test_img_4} id='test_4' test_id={4} goTest={goTest} text={<span>Методика "Профиль"</span>}/>
+						<TestCard src={test_img_5} id='test_5' test_id={5} goTest={goTest} text={<span>Опросник профессиональных<br />склонностей Йовайши</span>}/>
 					</CardScroll>
 				</Group>
 			</Div>
@@ -79,27 +70,13 @@ const Main = ({ id, go, fetchedUser, goTest, results}) => {
 							<Group 
 								separator='hide'
 							>
-								<Title level="2" weight="semibold" style={{ height: '42px' }}>Уровень безработицы</Title>
-								<MyColumnChart 
-									data={[['Год', 'Процент безработных'],
-												['2007', 6.0], ['2008', 6.2],
-												['2009', 8.3], ['2010', 7.3],
-												['2011', 6.5], ['2012', 5.5],
-												['2013', 5.5], ['2014', 5.2],
-												['2015', 5.6], ['2016', 5.5],
-												['2017', 5.2], ['2018', 4.8],
-												['2019', 4.4],]}
-									minXValue={2007}
-									maxXValue={2019}
-									minYValue={0}
-									maxYValue={9}
-									color='#5181B8'
-								/>
+								<Title level="2" weight="semibold" style={{ height: '42px' }}>В разработке</Title>
+								<Text weight='regular'>Графические данные и диаграммы, основанные на результатах тестирования</Text>
 							</Group>
 							<Group 
 								separator='hide'
 							>	
-							<Title level="3" weight="semibold">Динамика роста среднемесячной зарплаты</Title>
+							<Title level="3" weight="semibold">Динамика роста среднемесячной зарплаты (пример) </Title>
 								<MyColumnChart 
 									data={[['Год', 'Среднемесечная ЗП'],
 												['2007', 13593],
@@ -123,8 +100,15 @@ const Main = ({ id, go, fetchedUser, goTest, results}) => {
 					</Card>
 				</Group>
 			</Div>
+			<Div style={{ padding: '50px 10px 50px 10px'}}>
+				<Button size='xl' mode='secondary' onClick={goReview}>Оставить отзыв</Button>
+				<Div />
+				<Separator />
+				<Div />
+				<Link href='https://vk.com/im?peers=477793791&sel=339873790' style={{marginBottom: '50px', marginTop: '50px', textAlign: 'center' }}> Нашли ошибку?<br />Есть предложения по улучшению?</Link>
+			</Div>
 		</Panel>
-)};
+);
 
 
 Main.propTypes = {

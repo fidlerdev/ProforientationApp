@@ -502,8 +502,8 @@ const Test_5 = props => {
       </PanelHeader>
       <Progress value={count / 30 * 100}/>
       <Div className='TestText'>
-        <Card className='QuestionCard'>>
-          <Caption level="1" weight="regular"><Text weight='regular' style={{ color: 'rgb(0, 183, 255)'}}></Text>{currentQuestion}</Caption>
+        <Card className='QuestionCard'>
+          <Caption level="1" weight="regular">{currentQuestion}</Caption>
         </Card>
       </Div>
         <FormLayout className='TestForm'>

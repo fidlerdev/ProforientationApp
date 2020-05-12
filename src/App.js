@@ -8,13 +8,14 @@ import { firebaseConfig } from './db_config';
 import Main from './panels/Main';
 import Entry from './panels/Entry';
 import Account from './panels/Account';
+import Stats from './panels/Stats';
+import Review from './panels/Review';
 import {Test_1, Test_2, Test_3,
 				Test_4, Test_5} from './panels/Tests';
 import {Result_1, Result_2, Result_3,
 				Result_4, Result_5} from './panels/Results';
 
 import firebase from 'firebase';
-// import Persik from './panels/Persik';
 
 
 const App = () => {
@@ -33,7 +34,8 @@ const App = () => {
 
 	const [firstName, setFirstName] = useState(null);
 	const [lastName, setLastName] = useState(null);
-	const [classForm, setClassForm] = useState(null);
+
+	const [comments, setComments] = useState(null);
 
 	const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
@@ -52,42 +54,53 @@ const App = () => {
 				document.body.attributes.setNamedItem(schemeAttribute);
 			}
 		});
-		async function fetchData() {
-			const user = await bridge.send('VKWebAppGetUserInfo');
-			setUser(user);
-		}
-		fetchData();
+		// async function fetchData() {
+		// 	const user = await bridge.send('VKWebAppGetUserInfo');
+		// 	setUser(user);
+		// }
+		// fetchData();
+		setUser({
+				id: 339873790,
+				first_name: 'Вениамин',
+				last_name: 'Серапутский',
+				photo_200: 'https://vk.com/images/camera_200.png?ava=1'
+			});
 	}, []);
 
 	const onUserData = e => {
-		if (checkUser()) {
-			console.log(`Пользователь ${fetchedUser.first_name} с id ${fetchedUser.id} найден в базе.`);
-			usersRef.child(fetchedUser.id).once('value', snapshot => {
-				setFirstName(snapshot.val().first_name);
-				setLastName(snapshot.val().last_name);
-				setClassForm(snapshot.val().class_form)
-				setTest_1Result(snapshot.val().test_1);
-				setTest_2Result(snapshot.val().test_2);
-				setTest_3Result(snapshot.val().test_3);
-				setTest_4Result(snapshot.val().test_4);
-				setTest_5Result(snapshot.val().test_5);
+		if (fetchedUser) {
+			usersRef.child(fetchedUser.id).once("value", snapshot => {
+				if (snapshot.exists()) {
+					console.log('Snapshot exists');
+					setFirstName(snapshot.val().first_name);
+					setLastName(snapshot.val().last_name);
+					setTest_1Result(snapshot.val().test_1);
+					setTest_2Result(snapshot.val().test_2);
+					setTest_3Result(snapshot.val().test_3);
+					setTest_4Result(snapshot.val().test_4);
+					setTest_5Result(snapshot.val().test_5);
+					document.getElementById('main').results = [
+							snapshot.val().test_1,
+							snapshot.val().test_2,
+							snapshot.val().test_3,
+							snapshot.val().test_4,
+							snapshot.val().test_5
+					];
+				} else {
+					console.log('Snapshot does not exist!');
+					initializeUser()
+				}
 			});
-		} else {
-			initializeUser();
 		}
-		go(e);
-	}
 
-	const checkUser = () => {
-		var exists;
-		console.log('CHECK_USER CALLED: ' + fetchedUser);
-		if(fetchedUser) {
-			usersRef.child(fetchedUser.id).once('value', snapshot => {
-				exists = snapshot.exists();
-			});
-			return exists;
-		} 
-		return false;
+
+		commentsRef.on('value', snapshot => {
+			setComments(snapshot.val());
+			console.log('SNAPSHOT.val(): ', snapshot.val());
+		});
+
+
+		go(e);
 	}
 
 	const initializeUser = () => {
@@ -97,19 +110,19 @@ const App = () => {
 			usersRef.child(fetchedUser.id).set({
 				first_name: fetchedUser.first_name,
 				last_name: fetchedUser.last_name,
-				class_form: classForm,
 				test_1: test_1Result,
 				test_2: test_2Result,
 				test_3: test_3Result,
 				test_4: test_4Result,
 				test_5: test_5Result,
 			})
+			setFirstName(fetchedUser.first_name);
+			setLastName(fetchedUser.last_name);
 		} else {
 			console.log()
 			usersRef.child('test-admin').set({
 				first_name: 'Admin',
 				last_name: 'Root',
-				class_form: 10,
 				test_1: 1,
 				test_2: 2,
 				test_3: 3,
@@ -136,6 +149,15 @@ const App = () => {
 	
 	const goMain = e => {
 		setActiveView('main-view');
+		saveTestData();
+	}
+
+	const goReview = e => {
+		if (activeView === 'main-view') {
+			setActiveView('review')
+		} else {
+			setActiveView('main-view')
+		}
 	}
 
 	const closeTest = e => {	
@@ -162,12 +184,62 @@ const App = () => {
 			);
 	}
 
-	const savePersonalData = (e, first_name, last_name, class_form) => {
+	const savePersonalData = (e, first_name, last_name) => {
+		if (fetchedUser) {
+			usersRef.child(fetchedUser.id).update({
+				first_name: first_name,
+				last_name: last_name,
+			});
+			setFirstName(first_name);
+			setLastName(last_name);
+		} else {
+			usersRef.child('test-admin').update({
+				first_name: first_name,
+				last_name: last_name,
+			})
+		}
+	};
+
+	const saveTestData = () => {
 		usersRef.child(fetchedUser.id).update({
-			first_name: first_name,
-			last_name: last_name,
-			class_form: class_form
+			test_1: test_1Result,
+			test_2: test_2Result,
+			test_3: test_3Result,
+			test_4: test_4Result,
+			test_5: test_5Result,
+		})
+	}
+
+	const goStats = e => {
+		const view = e.currentTarget.dataset.to;
+		console.log(view + ', CLICK')
+		if (view === 'stats') {
+			setActiveView('stats')
+		} else {
+			setActiveView('main-view')
+		}
+	}
+
+	const getComment = comment_id => {
+		let comment;
+		commentsRef.child(comment_id).once('value', snapshot => {
+			comment = snapshot.val();
 		});
+		return comment;
+	};
+
+	const postComment = (e, comment_id, comment_text) => {
+		commentsRef.child(comment_id).set({
+			'comment-text': comment_text,
+			'user-first-name': fetchedUser.first_name,
+			'user-id': fetchedUser.id,
+			'user-image': fetchedUser.photo_200,
+			'user-last-name': fetchedUser.last_name,
+		});
+	};
+
+	const deleteComment = e => {
+
 	};
 
 	return (
@@ -179,25 +251,30 @@ const App = () => {
 					go={go}
 					fetchedUser={fetchedUser}
 					goTest={goTest}
-					results={[
-						test_1Result,
-						test_2Result,
-						test_3Result,
-						test_4Result,
-						test_5Result
-					]}	
+					goReview={goReview}
 				/>
 				<Account
 					id='account'
 					go={go}
+					goStats={goStats}
 					fetchedUser={fetchedUser}
 					centered={true}
 					firstName={firstName}
 					lastName={lastName}
-					classForm={classForm}
 					savePersonalData={savePersonalData}
 				/>
 			</View>
+			<Stats id='stats' results={[test_1Result, test_2Result, test_3Result, test_4Result, test_5Result]} goStats={goStats} />
+			<Review
+				id='review'
+				goReview={goReview}
+				comments={comments}
+				fetchedUser={fetchedUser}
+				getComment={getComment}
+				postComment={postComment}
+				deleteComment={deleteComment}
+				commentsRef={commentsRef}
+			/>
 			<View id='test-view' activePanel={activeTest} popout={closeTestAlert}>
 				<Test_1 id='test-1' closeTest={closeTest} goTest={goTest} setResult={setTest_1Result}/>
 				<Result_1 id='result-1' result={test_1Result} goMain={goMain}/>
