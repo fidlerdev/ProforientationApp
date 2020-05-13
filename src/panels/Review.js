@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Panel, Textarea, PanelHeader, FormLayout, Div, View, PanelHeaderButton, Button, ActionSheet, ActionSheetItem } from '@vkontakte/vkui';
+import { Panel, Textarea, PanelHeader, FormLayout, Div, View, PanelHeaderButton, Button, ActionSheet, ActionSheetItem, v } from '@vkontakte/vkui';
 import ReviewCell from './ReviewCell';
 import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
 import bridge from '@vkontakte/vk-bridge';
@@ -9,43 +9,84 @@ class Review extends React.Component {
 
 
   constructor(props) {
+    console.log('constructor');
     super(props);
-    console.log('PROPS.COMMENTS: ', props.comments);
     this.state = {
       popout: null,
       Comments: [],
-      // comments: props.comments ? props.comments : [],
-      comments: props.comments ? props.comments : [],
-      new_comment_id: 0
+      comments: [],
+      new_comment_id: '0'
     };
-
+    
     this.showPopout = this.showPopout.bind(this);
-    this.prepareComment = this.prepareComment.bind(this);
-    this.load_comments = this.load_comments.bind(this);
+    // this.prepareComment = this.prepareComment.bind(this);
+    // this.load_comments = this.load_comments.bind(this);
+    // this.getComment = this.getComment.bind(this);
   }
 
-  componentDidMount() {
-    this.load_comments(this.props.comments);
+  async componentDidMount() {
+    console.log('componentDidMount');
+    await this.props.commentsRef.once('value', snapshot => {
+      console.log('snapshot.val() in componentDidMount', snapshot.val());
+      this.setState({comments: snapshot.val()});
+    });
+    this.load_comments();
+    
   }
 
-  load_comments(comments) {
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate')
+
+    if (JSON.stringify(this.state.comments) != JSON.stringify(prevState.comments)) {
+      this.props.commentsRef.on('value', snapshot => {
+        this.setState({comments: snapshot.val() ? snapshot.val() : []});
+        console.log('SNAPSHOT.val() in componentDidUpdate: ', snapshot.val());
+      });
+      this.load_comments();
+    }
+  }
+
+  async getComment (comment_id) {
+    var comment;
+		await this.props.commentsRef.child(comment_id).once('value', snapshot => {
+			comment = snapshot.val();
+      console.log('comment in getComment: ', comment);
+		});
+		return comment;
+	}
+
+  async deleteComment (id) {
+    console.log('deleteComment, id:', id);
+    await this.props.commentsRef.child(id).remove();
+  } 
+
+
+
+  load_comments() {
+
+    console.log('load_comments');
+
     let arr = [];
     
-    let last_id = 0;
+    let last_id = -1;
+    console.log('comments in load_comments: ', this.state.comments)
 
-    for (let comment_id in comments) {
-      const comment = this.props.getComment(comment_id);
-      if (comment) {
-        const user_id = comment['user-id'];
-        const user_image = comment['user-image'];
-        const comment_text = comment['comment-text'];
-        const user_firstName = comment['user-first-name'];
-        const user_lastName = comment['user-last-name'];
+    for (let comment_id in this.state.comments) {
+      // const comment = this.getComment(comment_id);
+      
+      console.log(comment_id)
+      if (this.state.comments[comment_id]) {
+        const user_id = this.state.comments[comment_id]['user-id'];
+        const user_image = this.state.comments[comment_id]['user-image'];
+        const comment_text = this.state.comments[comment_id]['comment-text'];
+        const user_firstName = this.state.comments[comment_id]['user-first-name'];
+        const user_lastName = this.state.comments[comment_id]['user-last-name'];
         arr.push(
           <ReviewCell
             key={comment_id}
             fetchedUser={this.props.fetchedUser}
             commentText={comment_text}
+            comment_id={comment_id}
             showPopout={this.showPopout}
             user_id={user_id}
             user_image={user_image}
@@ -56,6 +97,8 @@ class Review extends React.Component {
       }
     }
     arr.reverse();
+    console.log('LAST_id', last_id);
+    console.log(arr);
     this.setState({
       Comments: arr,
       new_comment_id: (parseInt(last_id, 10) + 1).toString()
@@ -64,10 +107,12 @@ class Review extends React.Component {
   }
 
   showPopout (e) {
+    const id = e.currentTarget.dataset.id;
+    console.log('comment_id to delete: ', id);
     this.setState({
       popout: 
       <ActionSheet onClose={() => this.setState({ popout: null })}>
-        <ActionSheetItem mode='destructive' autoclose onClose={() => this.props.deleteComment()}>
+        <ActionSheetItem mode='destructive' autoclose onClick={() => this.deleteComment(id)}>
           Удалить
         </ActionSheetItem>
         <ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>
@@ -78,6 +123,7 @@ class Review extends React.Component {
   prepareComment (e) {
     const comment_area = document.getElementById('review-area');
     const comment_text = comment_area.value;
+    if (comment_text.trim()) {
     comment_area.value = '';
     const comment_id = this.state.new_comment_id;
     this.props.postComment(e, comment_id, comment_text);
@@ -96,9 +142,10 @@ class Review extends React.Component {
     console.log(Object.keys(updated_comments).length);
     console.log(updated_comments);
     this.load_comments(updated_comments);
+    }
   }
 
- //this.props.deleteComment
+
   render() {
     return (
       <View id={this.props.id} popout={this.state.popout}>

@@ -33,7 +33,7 @@ const Stats = props => {
           }]}
           onClose={ () => setAlert(null) }
         >
-          <h2>Вы еще не прошли тест {e.currentTarget.dataset.id}</h2>
+          <h2>Вы еще не прошли тест {parseInt(e.currentTarget.dataset.id, 10) + 1}</h2>
         </Alert>
       );
     } else {

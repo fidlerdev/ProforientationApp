@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Panel, PanelHeader, Title, Card, Div, Button, Link, Text, Counter, List, Cell } from '@vkontakte/vkui';
-
+import Icon24Repost from '@vkontakte/icons/dist/24/repost';
 
 import './styles/Results.css';
 import * as test_1_result_text from './Test data/test_1.json';
@@ -95,40 +95,45 @@ const Result_2 = props => {
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_1' onClick={toggleDesc}>
+          <Link data-desc='description_1' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(П-Д) Предметно-действенное мышление</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_1' onClick={toggleDesc}>{description_1}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_2' onClick={toggleDesc}>
+          <Link data-desc='description_2' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(А-С) Абстрактно-символическое мышление</Title>
+            <Icon24Repost />
           </Link>
             <Text weight='regular' data-desc='description_2' onClick={toggleDesc}>{description_2}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_3' onClick={toggleDesc}>
+          <Link data-desc='description_3' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(С-Л) Словесно-логическое мышление</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_3' onClick={toggleDesc}>{description_3}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_4' onClick={toggleDesc}>
+          <Link data-desc='description_4' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(Н-О) Наглядно-образное мышление</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_4' onClick={toggleDesc}>{description_4}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_5' onClick={toggleDesc}>
+          <Link data-desc='description_5' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(К) Креативность</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_5' onClick={toggleDesc}>{description_5}</Text>
         </Card>
@@ -188,40 +193,45 @@ const Result_3 = props => {
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_1' onClick={toggleDesc}>
+          <Link data-desc='description_1' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(ЧП) Человек — Природа</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_1' onClick={toggleDesc}>{description_1}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_2' onClick={toggleDesc}>
+          <Link data-desc='description_2' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(ЧТ) Человек — Техника</Title>
+            <Icon24Repost />
           </Link>
             <Text weight='regular' data-desc='description_2' onClick={toggleDesc}>{description_2}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_3' onClick={toggleDesc}>
+          <Link data-desc='description_3' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(ЧЧ) Человек — Человек</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_3' onClick={toggleDesc}>{description_3}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_4' onClick={toggleDesc}>
+          <Link data-desc='description_4' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(ЧЗ) Человек — Знаковая система</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_4' onClick={toggleDesc}>{description_4}</Text>
         </Card>
       </Div>
       <Div>
         <Card mode='shadow' className='Card'>
-          <Link data-desc='description_5' onClick={toggleDesc}>
+          <Link data-desc='description_5' onClick={toggleDesc} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: 20 }}>
             <Title level='2' weight='heavy' style={{ marginBottom: 16 }}>(ЧХ) Человек — Художественный образ</Title>
+            <Icon24Repost />
           </Link>
           <Text weight='regular' data-desc='description_5' onClick={toggleDesc}>{description_5}</Text>
         </Card>

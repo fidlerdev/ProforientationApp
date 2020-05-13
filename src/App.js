@@ -35,7 +35,7 @@ const App = () => {
 	const [firstName, setFirstName] = useState(null);
 	const [lastName, setLastName] = useState(null);
 
-	const [comments, setComments] = useState(null);
+	const [snapshotExists, setSnapshotExists] = useState(false);
 
 	const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
 
@@ -54,17 +54,18 @@ const App = () => {
 				document.body.attributes.setNamedItem(schemeAttribute);
 			}
 		});
-		// async function fetchData() {
-		// 	const user = await bridge.send('VKWebAppGetUserInfo');
-		// 	setUser(user);
-		// }
-		// fetchData();
-		setUser({
-				id: 339873790,
-				first_name: 'Вениамин',
-				last_name: 'Серапутский',
-				photo_200: 'https://vk.com/images/camera_200.png?ava=1'
-			});
+		async function fetchData() {
+			const user = await bridge.send('VKWebAppGetUserInfo');
+			setUser(user);
+		}
+		fetchData();
+		// Test user
+		// setUser({
+		// 		id: 339873790,
+		// 		first_name: 'Test',
+		// 		last_name: 'Test',
+		// 		photo_200: 'https://vk.com/images/camera_200.png?ava=1'
+		// 	});
 	}, []);
 
 	const onUserData = e => {
@@ -86,19 +87,14 @@ const App = () => {
 							snapshot.val().test_4,
 							snapshot.val().test_5
 					];
+					setSnapshotExists(true);
 				} else {
 					console.log('Snapshot does not exist!');
 					initializeUser()
+					setSnapshotExists(true);
 				}
 			});
 		}
-
-
-		commentsRef.on('value', snapshot => {
-			setComments(snapshot.val());
-			console.log('SNAPSHOT.val(): ', snapshot.val());
-		});
-
 
 		go(e);
 	}
@@ -118,17 +114,6 @@ const App = () => {
 			})
 			setFirstName(fetchedUser.first_name);
 			setLastName(fetchedUser.last_name);
-		} else {
-			console.log()
-			usersRef.child('test-admin').set({
-				first_name: 'Admin',
-				last_name: 'Root',
-				test_1: 1,
-				test_2: 2,
-				test_3: 3,
-				test_4: [4, 1, 2, 3],
-				test_5: 5
-			})
 		}
 	};
 
@@ -220,26 +205,14 @@ const App = () => {
 		}
 	}
 
-	const getComment = comment_id => {
-		let comment;
-		commentsRef.child(comment_id).once('value', snapshot => {
-			comment = snapshot.val();
-		});
-		return comment;
-	};
-
 	const postComment = (e, comment_id, comment_text) => {
 		commentsRef.child(comment_id).set({
 			'comment-text': comment_text,
-			'user-first-name': fetchedUser.first_name,
+			'user-first-name': firstName,
 			'user-id': fetchedUser.id,
 			'user-image': fetchedUser.photo_200,
-			'user-last-name': fetchedUser.last_name,
+			'user-last-name': lastName,
 		});
-	};
-
-	const deleteComment = e => {
-
 	};
 
 	return (
@@ -252,6 +225,7 @@ const App = () => {
 					fetchedUser={fetchedUser}
 					goTest={goTest}
 					goReview={goReview}
+					snapshotExists={snapshotExists}
 				/>
 				<Account
 					id='account'
@@ -268,11 +242,8 @@ const App = () => {
 			<Review
 				id='review'
 				goReview={goReview}
-				comments={comments}
 				fetchedUser={fetchedUser}
-				getComment={getComment}
 				postComment={postComment}
-				deleteComment={deleteComment}
 				commentsRef={commentsRef}
 			/>
 			<View id='test-view' activePanel={activeTest} popout={closeTestAlert}>

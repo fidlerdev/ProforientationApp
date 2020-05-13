@@ -335,7 +335,7 @@ const ModalResult_5 = props => {
   }); 
 
   return (
-    <ModalPage>
+    <ModalPage settlingHeight={100}>
       <ModalPageHeader
               right={<PanelHeaderButton style={{ marginRight: '15px' }} onClick={() => props.setActiveModal(null)}>{IS_PLATFORM_IOS ? 'Готово' : <Icon24Done />}</PanelHeaderButton>}
               >

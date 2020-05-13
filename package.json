@@ -20,6 +20,7 @@
     "react-scripts": "^3.4.1"
   },
   "dependencies": {
+    "@react-firebase/database": "^0.3.11",
     "@vkontakte/icons": "^1.20.2",
     "@vkontakte/vk-bridge": "^2.2.0",
     "@vkontakte/vk-miniapps-deploy": "0.0.17",
@@ -30,6 +31,7 @@
     "eruda": "^2.3.2",
     "eruda-code": "^2.0.0",
     "eruda-dom": "^2.0.0",
+    "firebase": "^7.14.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

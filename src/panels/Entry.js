@@ -6,14 +6,14 @@ import { Div, FixedLayout, Title } from '@vkontakte/vkui';
 
 import './styles/Entry.css'
 
-import logo_256_256 from '../img/Logo 256x256.png';
+import logo_278_278 from '../img/Logo278x278.png';
 
 
 const Entry = ({id, go, onUserData}) => (
   <Panel id={id} centered>
     <Div className='Entry'>
       <PanelHeader separator={false} visor={true} />
-      <img src={logo_256_256} alt='Logo 256x256'/>
+      <img src={logo_278_278} alt='Logo 150x150'/>
       <Title level="1" weight="medium" style={{ marginBottom: 16 }}>Профориентация</Title>
 
       <Button
@@ -28,9 +28,9 @@ const Entry = ({id, go, onUserData}) => (
       </Button>
       
     </Div>
-      <FixedLayout vertical="bottom">
+      {/* <FixedLayout vertical="bottom">
         <p onClick={go} data-to='authorship' id='authorship-link'><u>Ссылки на источники</u></p>
-      </FixedLayout>
+      </FixedLayout> */}
   </Panel>
 );
 

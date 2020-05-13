@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
 // import Button from '@vkontakte/vkui/dist/components/Button/Button';
 import Group from '@vkontakte/vkui/dist/components/Group/Group';
-import { Card, CardScroll, Header, Caption, Gallery, Title, Text, Link, Separator, Button } from '@vkontakte/vkui';
+import { Card, CardScroll, Header, Caption, Gallery, Title, Text, Link, Separator, Button, Tooltip } from '@vkontakte/vkui';
 import Div from '@vkontakte/vkui/dist/components/Div/Div';
 // import Avatar from '@vkontakte/vkui/dist/components/Avatar/Avatar';
 // import Icon56DoNotDisturbOutline from '@vkontakte/icons/dist/56/do_not_disturb_outline';
@@ -25,13 +25,21 @@ import TestCard from './TestCard';
 // import Tests from './Tests';
 import MyColumnChart from './MyColumnChart';
 
-const Main = ({ id, go, goTest, goReview}) => (
+const Main = ({ id, go, goTest, goReview, snapshotExists}) => {
+
+	const [tooltip1, setTooltip1] = useState(!snapshotExists);
+
+	return (
 	// Main page UI
 		<Panel id={id}>
 			<PanelHeader
-			left={<PanelHeaderButton>	
-							<Icon28UserCircleOutline onClick={go} data-to='account'/>
-						</PanelHeaderButton>}
+			left={
+				<Tooltip text='Здесь можно просмотреть результаты пройденных тестов' header='Ваш профиль' cornerOffset={-10} isShown={tooltip1} onClose={() => setTooltip1(false)}>
+					<PanelHeaderButton>	
+						<Icon28UserCircleOutline onClick={go} data-to='account'/>
+					</PanelHeaderButton>
+				</Tooltip> 
+				}
 			>
 				Профориентация
 			</PanelHeader>
@@ -109,6 +117,7 @@ const Main = ({ id, go, goTest, goReview}) => (
 			</Div>
 		</Panel>
 );
+}
 
 
 Main.propTypes = {
